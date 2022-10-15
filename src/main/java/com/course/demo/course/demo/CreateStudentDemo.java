@@ -1,11 +1,11 @@
-package com.course.demo;
+package com.course.demo.course.demo;
 
 import com.course.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteStudentDemo {
+public class CreateStudentDemo {
 
     public static void main(String[] args) {
 
@@ -18,27 +18,21 @@ public class DeleteStudentDemo {
 
         try
         {
-            int studentId = 1;
+            // use the session object to save Java object
+            System.out.println("Creating new student object...");
+            Student tmpStudent = new Student("Paul", "Wall", "paul@gmail.com");
 
-            // get a new session and transaction and retrieve student: primary key
-            session = factory.getCurrentSession();
+            // start a transaction
             session.beginTransaction();
 
-            System.out.println("Getting Student with id: " + studentId);
-            Student myStudent = session.get(Student.class, studentId);
+            // save the student object
+            System.out.println("Saving the student");
+            session.save(tmpStudent);
 
-            // delete student
-            System.out.println("deleting student " + myStudent);
-            session.delete(myStudent);
-
-            // delete student
-            System.out.println("deleting student id = 2");
-            session.createQuery("delete from Student where id=2").executeUpdate();
-
-
+            // commit transaction
             session.getTransaction().commit();
-            System.out.println("Done!");
 
+            System.out.println("Done!");
         }
         finally {
             factory.close();

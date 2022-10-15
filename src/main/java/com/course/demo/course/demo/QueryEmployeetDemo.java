@@ -1,4 +1,4 @@
-package com.course.demo;
+package com.course.demo.course.demo;
 
 import com.course.entity.Employee;
 import com.course.entity.Student;

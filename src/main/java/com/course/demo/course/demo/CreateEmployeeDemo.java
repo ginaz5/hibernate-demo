@@ -1,4 +1,4 @@
-package com.course.demo;
+package com.course.demo.course.demo;
 
 import com.course.entity.Employee;
 import com.course.entity.Student;
@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteEmployeeDemo {
+public class CreateEmployeeDemo {
 
     public static void main(String[] args) {
 
@@ -19,25 +19,24 @@ public class DeleteEmployeeDemo {
 
         try
         {
-            int eid = 1;
+            // use the session object to save Java object
+            Employee employee = new Employee("Tom", "Cruise", "Apple");
+            Employee employee2 = new Employee("Amy", "Heard", "Amazon");
+            Employee employee3 = new Employee("John", "Deep", "Facebook");
 
-            // get a new session and transaction and retrieve student: primary key
-            session = factory.getCurrentSession();
+            // start a transaction
             session.beginTransaction();
 
-            Employee employee = session.get(Employee.class, eid);
+            // save the student object
+            System.out.println("Saving the employee");
+            session.save(employee);
+            session.save(employee2);
+            session.save(employee3);
 
-            // delete student
-            session.delete(employee);
-
-            // delete student
-//            System.out.println("deleting student id = 2");
-//            session.createQuery("delete from Student where id=2").executeUpdate();
-
-
+            // commit transaction
             session.getTransaction().commit();
-            System.out.println("Done!");
 
+            System.out.println("Done!");
         }
         finally {
             factory.close();
