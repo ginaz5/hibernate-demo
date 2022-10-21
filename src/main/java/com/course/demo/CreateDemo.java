@@ -21,26 +21,20 @@ public class CreateDemo {
 
         try
         {
-            // create the objects
-//            Instructor instructor =
-//                    new Instructor("test", "Darby", "darby@3.com");
-//            InstructorDetail instructorDetail =
-//                    new InstructorDetail("jriejri_YOUTUBE", "I love Java");
-
-            Instructor instructor =
-                    new Instructor("final", "fir", "fir@3.com");
-            InstructorDetail instructorDetail =
-                    new InstructorDetail("Dbearver_YOUTUBE", "I love JJJJ");
-
-            // associate the objects
-            instructor.setInstructorDetail(instructorDetail);
-
-
             // start a transaction
             session.beginTransaction();
 
-            // this will save details table as well
-            session.save(instructor);
+            // get instructor by id
+            int theId = 1;
+            Instructor instructor = session.get(Instructor.class, theId);
+
+            System.out.println("Found instructor"+ instructor);
+
+            if(instructor != null)
+            {
+                System.out.println("Deleting it");
+                session.delete(instructor);
+            }
 
             // commit transaction
             session.getTransaction().commit();
