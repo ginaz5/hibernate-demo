@@ -1,7 +1,5 @@
 package com.course.entity;
 
-import ch.qos.logback.core.joran.action.ConversionRuleAction;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class Instructor {
     }
 
     // add method for bi-directional relationship
-    public void add (Course course) {
+    public void addCourse(Course course) {
         if (courses == null ) {
             courses = new ArrayList<>();
         }
