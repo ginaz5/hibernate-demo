@@ -29,14 +29,14 @@ public class EagerLazyDemo {
             int id = 1;
             Instructor instructor = session.get(Instructor.class, id);
 
-            System.out.println("EAGER: ==== GET COURSE ===" + instructor);
+            System.out.println("LAZY: ==== GET COURSE ===" + instructor);
 
-            System.out.println("EAGER: ==== GET INSTRUCTOR ===" + instructor.getCourses());
+            System.out.println("LAZY: ==== GET INSTRUCTOR ===" + instructor.getCourses());
 
             // commit transaction
             session.getTransaction().commit();
 
-            System.out.println("EAGER: Done!");
+            System.out.println("LAZY: Done!");
         }
         finally {
             session.close();
