@@ -20,8 +20,9 @@ public class Course {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL) // when deleting course, it will delete its reviews to.
+    @JoinColumn(name = "course_id") // tell hibernate how to associate reviews with the given course
     private List<Review> reviews;
 
     public void addReview(Review review) {
