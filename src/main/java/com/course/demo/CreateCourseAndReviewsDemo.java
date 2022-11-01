@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetCourseAndReviewsDemo {
+public class CreateCourseAndReviewsDemo {
 
     public static void main(String[] args) {
 
@@ -28,15 +28,20 @@ public class GetCourseAndReviewsDemo {
             // start a transaction
             session.beginTransaction();
 
-            // get the course
-            int id = 10;
-            Course course = session.get(Course.class, id);
+            // create a course
+            Course course = new Course("Introduction to Java 8 ");
 
-            // print the course
+            // add some reviews
+            course.addReview(new Review("Great course!"));
+            course.addReview(new Review("Best ever!"));
+            course.addReview(new Review("Don't pick this course"));
+
+            // save the course
+            System.out.println("Saving the course...");
             System.out.println(course);
-
-            // print the course review
             System.out.println(course.getReviews());
+
+            session.save(course);
 
             // commit transaction
             session.getTransaction().commit();
