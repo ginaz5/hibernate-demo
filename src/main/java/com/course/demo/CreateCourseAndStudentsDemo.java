@@ -27,7 +27,7 @@ public class CreateCourseAndStudentsDemo {
             session.beginTransaction();
 
             // create a course
-            Course course = new Course("CS50 ");
+            Course course = new Course("QQQ");
 
             // save the course
             System.out.println("Saving the course...");
@@ -37,17 +37,18 @@ public class CreateCourseAndStudentsDemo {
             session.save(course);
 
             // create students
-            Student student = new Student("John", "Doe", "john@lovecode.com");
-            Student student2 = new Student("Mary", "Public", "mary@lovecode.com");
+            Student student = new Student("TEST", "Join", "terramiss@lovecode.com");
+
 
             // add students to the course
-            course.addStudent(student);
-            course.addStudent(student2);
+//            course.addStudent(student);
+//            course.addStudent(student2);
+
+            student.addCourse(course);
 
             // save the students
             System.out.println("Saving students...");
             session.save(student);
-            session.save(student2);
 
             // commit transaction
             session.getTransaction().commit();
